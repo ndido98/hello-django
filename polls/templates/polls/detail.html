@@ -1,0 +1,6 @@
+<h1>{{ poll.question }}</h1>
+<ul>
+    {% for option in options %}
+    <li>{{ option.option_text }} ({{ option.vote_count }} votes)</li>
+    {% endfor %}
+</ul>

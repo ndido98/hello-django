@@ -1,0 +1,8 @@
+{% if polls %}
+{% for poll in polls %}
+    <h2>{{ poll.question }}</h2>
+    <a href="{% url 'detail' poll.id %}">View Poll</a>
+{% endfor %}
+{% else %}
+    <h2>No polls available.</h2>
+{% endif %}
