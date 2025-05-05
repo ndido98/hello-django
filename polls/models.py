@@ -16,6 +16,9 @@ class Poll(models.Model):
     class Meta:
         db_table = 'poll'
 
+    def __str__(self):
+        return self.question
+
 
 class PollOption(models.Model):
     poll = models.ForeignKey(Poll, on_delete=models.DO_NOTHING, related_name='options')
@@ -23,6 +26,9 @@ class PollOption(models.Model):
 
     class Meta:
         db_table = 'poll_option'
+
+    def __str__(self):
+        return self.option_text
 
 
 class Vote(models.Model):
