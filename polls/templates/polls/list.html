@@ -1,7 +1,13 @@
+{% if request.user.is_authenticated %}
+<h1>Welcome, {{ request.user.username }}!</h1>
+{% else %}
+<a href="{% url 'polls:login' %}">Login</a>
+{% endif %}
+
 {% if polls %}
 {% for poll in polls %}
     <h2>{{ poll.question }}</h2>
-    <a href="{% url 'detail' poll.id %}">View Poll</a>
+    <a href="{% url 'polls:detail' poll.id %}">View Poll</a>
 {% endfor %}
 {% else %}
     <h2>No polls available.</h2>

@@ -4,3 +4,20 @@
     <li>{{ option.option_text }} ({{ option.vote_count }} votes)</li>
     {% endfor %}
 </ul>
+
+{% if request.user.is_authenticated %}
+<form action="{% url 'polls:vote' poll.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Vote for an option:</legend>
+        {% for option in options %}
+            <input type="radio" id="option{{ option.id }}" name="option" value="{{ option.id }}">
+            <label for="option{{ option.id }}">{{ option.option_text }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Vote">
+</form>
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endif %}
